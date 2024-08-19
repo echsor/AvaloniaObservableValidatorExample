@@ -14,10 +14,42 @@
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-
     <StackPanel>
-        <TextBlock Text="Enter your name"></TextBlock>
-        <TextBox Text="{Binding PersonViewModelValue.Name}"></TextBox>
+        <TextBlock Text="Enter your name"/>
+        <TextBox Text="{Binding PersonViewModelValue.Name}" x:Name="NameBox"/>
+        <Canvas Background="Red" Width="500" Height="100">
+            <Rectangle Fill="Blue" Width="{Binding $parent.Width}" Height="{Binding $parent.Height}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        </Canvas>
+
+        <!-- try to display the errors of the namebox here -->
+        <!-- <ContentControl Content="{Binding (DataValidationErrors.Errors), ElementName=NameBox}" -->
+        <!--                 IsVisible="{Binding (DataValidationErrors.HasErrors), ElementName=NameBox}"> -->
+        <!--     <ContentControl.ContentTemplate> -->
+        <!--         <DataTemplate> -->
+        <!--             <ItemsControl Items="{Binding (DataValidationErrors.Errors), ElementName=NameBox}"> -->
+        <!--                 <ItemsControl.ItemTemplate> -->
+        <!--                     <DataTemplate> -->
+        <!--                         <TextBlock Text="{Binding}"/> -->
+        <!--                     </DataTemplate> -->
+        <!--                 </ItemsControl.ItemTemplate> -->
+        <!--             </ItemsControl> -->
+        <!--         </DataTemplate> -->
+        <!--     </ContentControl.ContentTemplate> -->
+        <!-- </ContentControl> -->
+
+        <!-- <ItemsControl Items="{Binding (DataValidationErrors.Errors), ElementName=NameBox}"></ItemsControl> -->
+        <DockPanel Item></DockPanel>
+
+        <Canvas Background="Red" Width="500" Height="100">
+            <Rectangle Fill="Blue" Width="{Binding $parent.Width}" Height="{Binding $parent.Height}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        </Canvas>
+        <TextBlock Text="The error(s), if any will appear below"/>
+        <!-- <DataValidationErrors ></DataValidationErrors> -->
+
+        <!-- <DockPanel Item></DockPanel> -->
+
+        <!-- cannot find a way to bind to the descendant ItemControl of NameBox -->
+        <!-- <ItemsControl ItemsSource="{Binding #NameBox.DataContext}"></ItemsControl> -->
     </StackPanel>
 
 </Window>
